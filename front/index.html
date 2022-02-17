@@ -7,7 +7,29 @@
     ></script>
     inserire mail:
     <input type="text" id="mail" placeholder="email" />
+    inserire password:
+    <input type="password" id="psw" placeholder="password"/>
     <button id="b1">invia</button>
-    <script></script>
+    <script>
+      $("#b1").click(function(){
+        var mail=$("#mail").val();
+        var psw=$("#psw").val();
+        if (!mail && !psw){
+          console.log("Metti dei valori baobab")
+        }else{
+          console.log("valori: ", mail, ", ", psw);
+          $.ajax({
+            url: "http://localhost:3000/api/login?email="+mail+"&password="+psw,
+            method: "GET",
+            success: function(data){
+              console.log("success: ", data);
+            },
+            error: function(data){
+              console.log("error: ", data);
+            }
+          })
+        }
+      });
+    </script>
   </body>
 </html>
